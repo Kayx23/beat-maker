@@ -8,6 +8,7 @@ class DrumKit {
         this.bpm = 150;
         this.playButton = document.getElementById("play-button");
         this.isPlaying = null;
+        this.selects = document.querySelectorAll("select");
     }
     repeat() {
         let step = this.index % 8;
@@ -33,7 +34,7 @@ class DrumKit {
         })
         this.index++;
         // console.log(step);
-    }
+    };
     start() {
 
         // prevent starting if it's already playing
@@ -44,7 +45,6 @@ class DrumKit {
         if (buttonText === "Stop") {
             // stop
             clearInterval(this.isPlaying);
-            console.log(this.isPlaying)
             this.playButton.children[0].innerText = "Play";
         } else {
             // play
@@ -57,16 +57,35 @@ class DrumKit {
     };
     activePad() {
         this.classList.toggle("active");
+    };
+    changeSound(e) {
+        const optionName = e.target.name;
+        const optionValue = e.target.value;  // "./sounds/bluhbluh.wav"
+        switch (optionName) {
+            case "kick-select":
+                this.kickAudio.src = optionValue;
+                break;
+            case "snare-select":
+                this.snareAudio.src = optionValue;
+                break;
+            case "hihat-select":
+                this.hihatAudio.src = optionValue;
+                break;
+        }
     }
 }
 
 const drumKit = new DrumKit();
 
-// click to start
+
+// EVENT LISTENERS
+
+// click to start track
 document.querySelector("#play-button button").addEventListener("click", () => {
     drumKit.start();
 })
 
+// click pads to activate
 drumKit.pads.forEach(pad => {
     pad.addEventListener("click", drumKit.activePad);
     pad.addEventListener("animationend", function () {
@@ -74,4 +93,11 @@ drumKit.pads.forEach(pad => {
         // reset html style tag after animation is done
         // so that when style tag is updated again, keyframes animation starts
     });
+})
+
+// listen to the select menu
+drumKit.selects.forEach(option => {
+    option.addEventListener("change", (e) => {
+        drumKit.changeSound(e)
+    })
 })
