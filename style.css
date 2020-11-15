@@ -73,7 +73,7 @@ select:focus {
     background-color: rgb(245, 112, 112);
 }
 .snare-pad{
-    background-color: rgb(187, 247, 181);
+    background-color: rgb(197, 250, 193);
 }
 .snare-pad.active{
     background-color: rgb(50, 189, 38);
@@ -93,4 +93,9 @@ select:focus {
     border: none;
     font-size: 0.9rem;
     cursor: pointer;
+}
+
+@keyframes playTrack{
+    from {transform: scale(1);}
+    to {transform: scale(1.2);}
 }
