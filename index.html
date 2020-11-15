@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beat Maker</title>
+
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <script defer src="./app.js"></script>
+</head>
+
+<body>
+
+    <div class="sequencer">
+
+        <!-- row 1, Kick -->
+        <div class="kick-track">
+
+            <div class="controls">
+                <h1>Kick</h1>
+                <button data-track="0" class="mute kick-volumn">
+                    <i class="fas fa-volume-mute"></i>
+                </button>
+                <select name="kick-select" id="kick-select">
+                    <option value="./sounds/kick-classic.wav">Classic Kick</option>
+                    <option value="./sounds/kick-808.wav">808 Kick</option>
+                    <option value="./sounds/kick-heavy.wav">Kick Heavy</option>
+                </select>
+            </div>
+
+            <div class="kick">
+                <div class="pad kick-pad b0"></div>
+                <div class="pad kick-pad b0"></div>
+                <div class="pad kick-pad b0"></div>
+                <div class="pad kick-pad b0"></div>
+                <div class="pad kick-pad b0"></div>
+                <div class="pad kick-pad b0"></div>
+                <div class="pad kick-pad b0"></div>
+                <div class="pad kick-pad b0"></div>
+            </div>
+
+        </div>
+
+        <!-- row 2, Snare -->
+        <div class="snare-track">
+
+            <div class="controls">
+                <h1>Snare</h1>
+                <button data-track="1" class="mute snare-volumn">
+                    <i class="fas fa-volume-mute"></i>
+                </button>
+                <select name="snare-select" id="snare-select">
+                    <option value="./sounds/snare-acoustic01.wav">Snare Acoustic 1</option>
+                    <option value="./sounds/snare-808.wav">Snare 808</option>
+                    <option value="./sounds/snare-electro.wav">Snare Electro</option>
+                </select>
+            </div>
+
+            <div class="snare">
+                <div class="pad snare-pad b0"></div>
+                <div class="pad snare-pad b0"></div>
+                <div class="pad snare-pad b0"></div>
+                <div class="pad snare-pad b0"></div>
+                <div class="pad snare-pad b0"></div>
+                <div class="pad snare-pad b0"></div>
+                <div class="pad snare-pad b0"></div>
+                <div class="pad snare-pad b0"></div>
+            </div>
+
+        </div>
+
+        <!-- row 3, hihat -->
+        <div class="hihat-track">
+
+            <div class="controls">
+                <h1>Hihat</h1>
+                <button data-track="2" class="mute hihat-volumn">
+                    <i class="fas fa-volume-mute"></i>
+                </button>
+                <select name="hihat-select" id="hihat-select">
+                    <option value="./sounds/hihat-acoustic01.wav">Hihat Acoustic 1</option>
+                    <option value="./sounds/hihat-808.wav">Hihat 808</option>
+                    <option value="./sounds/hihat-electro.wav">Hihat Electro</option>
+                </select>
+            </div>
+
+            <div class="hihat">
+                <div class="pad hihat-pad b0"></div>
+                <div class="pad hihat-pad b0"></div>
+                <div class="pad hihat-pad b0"></div>
+                <div class="pad hihat-pad b0"></div>
+                <div class="pad hihat-pad b0"></div>
+                <div class="pad hihat-pad b0"></div>
+                <div class="pad hihat-pad b0"></div>
+                <div class="pad hihat-pad b0"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="play-button"><button>Play</button></div>
+    <audio class="kick-sound" src="./sounds/kick-classic.wav"></audio>
+    <audio class="snare-sound" src="./sounds/snare-classic.wav"></audio>
+    <audio class="hihat-sound" src="./sounds/hihat-classic.wav"></audio>
+
+</body>
+
+</html>
