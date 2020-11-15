@@ -50,6 +50,11 @@ select{
     color: white;
     border-width: 0.2rem;
 }
+/* once cliked, do not show highlighted border */
+select:focus {
+    outline: none;
+    box-shadow: none;
+}
 .sequencer{
     align-content: center;
 }
@@ -59,16 +64,25 @@ select{
     height: 4rem;
     margin: 1rem 0.5rem;
     cursor: pointer;
-    transition: all 0.5s ease;
+    transition: all 0.3s ease;
 }
 .kick-pad{
-    background-color: rgb(243, 177, 177);
+    background-color: rgb(248, 187, 187);
+}
+.kick-pad.active{
+    background-color: rgb(245, 112, 112);
 }
 .snare-pad{
-    background-color: rgb(180, 247, 174);
+    background-color: rgb(187, 247, 181);
+}
+.snare-pad.active{
+    background-color: rgb(50, 189, 38);
 }
 .hihat-pad{
     background-color: rgb(189, 232, 252);
+}
+.hihat-pad.active{
+    background-color: rgb(62, 188, 247);
 }
 
 #play-button{
@@ -78,4 +92,5 @@ select{
     padding: 0.7rem 1.2rem;
     border: none;
     font-size: 0.9rem;
+    cursor: pointer;
 }
