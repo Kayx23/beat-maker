@@ -10,12 +10,13 @@ class DrumKit {
         this.isPlaying = null;
         this.selects = document.querySelectorAll("select");
         this.muteButton = document.querySelectorAll(".mute");
+        this.tempoSlider = document.querySelector(".tempo-slider");
     }
     repeat() {
         let step = this.index % 8;
         const activeBars = document.querySelectorAll(`.b${step}`)
         activeBars.forEach(bar => {
-            bar.style.animation = "playTrack 0.3s ease-in-out alternate 2"  // style.animationDirection is alternate
+            bar.style.animation = "playTrack 0.2s ease-in-out alternate 2"  // style.animationDirection is alternate
             // play sounds if active
             if (bar.classList.contains("active")) {
                 if (bar.classList.contains("kick-pad")) {
@@ -113,6 +114,20 @@ class DrumKit {
                     break;
             }
         }
+    };
+    changeTempo(e) {
+        // changing text to reflect the slider value 
+        const tempoText = document.querySelector(".tempo-number");
+        this.bpm = e.target.value;
+        tempoText.innerText = this.bpm;
+    };
+    updateTempo() {
+        // pause
+        clearInterval(this.isPlaying);
+        // if the track is playing, restart
+        if (this.playButton.children[0].innerText = "Play") {
+            this.start()
+        }
     }
 }
 
@@ -148,4 +163,16 @@ drumKit.muteButton.forEach(btn => {
     btn.addEventListener("click", (e) => {
         drumKit.mute(e)
     })
+})
+
+// update tempo slider text
+drumKit.tempoSlider.addEventListener("input", (e) => {
+    // "input" - event invoked while the slider value changes when the user holds down
+    // "change" - event invoked while the user let go of the slider
+    drumKit.changeTempo(e)
+})
+
+// update tempo
+drumKit.tempoSlider.addEventListener("change", () => {
+    drumKit.updateTempo()
 })
