@@ -9,6 +9,7 @@ class DrumKit {
         this.playButton = document.getElementById("play-button");
         this.isPlaying = null;
         this.selects = document.querySelectorAll("select");
+        this.muteButton = document.querySelectorAll(".mute");
     }
     repeat() {
         let step = this.index % 8;
@@ -72,6 +73,46 @@ class DrumKit {
                 this.hihatAudio.src = optionValue;
                 break;
         }
+    };
+    mute(e) {
+        // data-track attribute is 0, 1, or 2; we pre-defined this attribute in html 
+        const muteIndex = e.target.getAttribute("data-track");
+        const iconClassList = e.target.children[0].classList
+        if (iconClassList.contains("fa-volume-up")) {
+            // if icon is fa-volume-up
+            // change icon
+            iconClassList.remove("fa-volume-up");
+            iconClassList.add("fa-volume-mute");
+            // mute 
+            switch (muteIndex) {
+                case "0":
+                    this.kickAudio.volume = 0;
+                    break;
+                case "1":
+                    this.snareAudio.volume = 0;
+                    break;
+                case "2":
+                    this.hihatAudio.volume = 0;
+                    break;
+            }
+        } else {
+            // if icon is fa-volume-mute
+            // change icon
+            iconClassList.remove("fa-volume-mute");
+            iconClassList.add("fa-volume-up");
+            // mute 
+            switch (muteIndex) {
+                case "0":
+                    this.kickAudio.volume = 1;
+                    break;
+                case "1":
+                    this.snareAudio.volume = 1;
+                    break;
+                case "2":
+                    this.hihatAudio.volume = 1;
+                    break;
+            }
+        }
     }
 }
 
@@ -99,5 +140,12 @@ drumKit.pads.forEach(pad => {
 drumKit.selects.forEach(option => {
     option.addEventListener("change", (e) => {
         drumKit.changeSound(e)
+    })
+})
+
+// mute buttons
+drumKit.muteButton.forEach(btn => {
+    btn.addEventListener("click", (e) => {
+        drumKit.mute(e)
     })
 })
